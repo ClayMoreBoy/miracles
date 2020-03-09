@@ -1,15 +1,9 @@
 <?php
-/**
- * Utils.php
- * 
- * 提供某些 Typecho 方法的封装，以及一些常用方法实现
- * 
- * @author      熊猫小A
- */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 class Utils
 {
+	
     /**
      * 输出相对首页路由，本方法会自适应伪静态，用于动态文件
      */
@@ -32,14 +26,6 @@ class Utils
     public static function indexTheme($path = '')
     {
         Helper::options()->themeUrl($path);
-    }
-
-    /**
-     * 根据邮箱返回 Gravatar 头像链接
-     */
-    public static function gravatar($mail, $size = 64, $d = '')
-    {
-        return Typecho_Common::gravatarUrl($mail, $size, '', urlencode($d), true);
     }
 
     /**
@@ -77,88 +63,25 @@ class Utils
     }
 
     /**
-     * 判定电脑端微信内置浏览器
-     */
-    public static function isWeixin() 
-    {
-        return  !self::isMobile() && strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false; 
-    }
-
-    /**
      * 判定内容是否过时
-     * $timeout：过期时间，单位为天
-     */
-    public static function isOutdated($archive, $timeout)
-    {
-        date_default_timezone_set("Asia/Shanghai");
-        return round((time()- $archive->created) / 3600 / 24) > $timeout;
-    }
-
-    /**
-     * 输出建站时间（最早一篇文章的写作时间）
-     */
-    public static function getBuildTime()
-    {
-        date_default_timezone_set("Asia/Shanghai");
-        $db = Typecho_Db::get();
-        $content = $db->fetchRow($db->select()->from('table.contents')
-            ->where('table.contents.status = ?', 'publish')
-            ->where('table.contents.password IS NULL')
-            ->order('table.contents.created', Typecho_Db::SORT_ASC)
-            ->limit(1));
-        return $content['created'];
-    }
-
-    /**
-     * 已发布文章数量
-     */
-    public static function getPostNum()
-    {
-        $db = Typecho_Db::get();
-        return $db->fetchObject($db->select(array('COUNT(cid)' => 'num'))
-            ->from('table.contents')
-            ->where('table.contents.type = ?', 'post')
-            ->where('table.contents.status = ?', 'publish'))->num;
-    }
-
-    /**
-     * 分类数量
-     */
-    public static function getCatNum()
-    {
-        $db = Typecho_Db::get();
-        return $db->fetchObject($db->select(array('COUNT(mid)' => 'num'))
-            ->from('table.metas')
-            ->where('table.metas.type = ?', 'category'))->num;
-    }
-
-    /**
-     * 标签数量
-     */
-    public static function getTagNum()
-    {
-        $db = Typecho_Db::get();
-        return $db->fetchObject($db->select(array('COUNT(mid)' => 'num'))
-            ->from('table.metas')
-            ->where('table.metas.type = ?', 'tag'))->num;
-    }
-
-    /**
-     * 总字数
      * 
-     * @return int
+     * @return array
      */
-    public static function getWordCount()
+    public static function isOutdated($archive)
     {
-        $db = Typecho_Db::get();
-        $posts = $db->fetchAll($db->select('table.contents.text')
-                    ->from('table.contents')
-                    ->where('table.contents.type = ?', 'post')
-                    ->where('table.contents.status = ?', 'publish'));
-        $total = 0;
-        foreach ($posts as $post) {
-            $total = $total + mb_strlen(preg_replace("/[^\x{4e00}-\x{9fa5}]/u", "", $post['text']), 'UTF-8');
-        }
-        return $total;
+        date_default_timezone_set("Asia/Shanghai");
+        $created = round((time()- $archive->created) / 3600 / 24);
+        $updated = round((time()- $archive->modified) / 3600 / 24);
+        return array("is" => $created > 90,
+                    "created" => $created,
+                    "updated" => $updated);
     }
+	
+	/**
+     * 编辑界面添加Button
+     */
+    public static function addButton(){
+		echo '<link rel="stylesheet" href="/usr/themes/Miracles/assets/css/setting.miracles.css" />';
+    }
+
 }
