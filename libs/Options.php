@@ -65,7 +65,7 @@ function themeConfig($form) {
 	echo '<div class="miracles-pannel">
 	<h1>Miracles 主题设置面板</h1>
 	<p>欢迎使用 Miracles 主题，目前版本是：'. $ver .'<br>
-	作者博客：<a href="https://guhub.cn">Eltrac\'s</a> | 帮助文档：<a href="https://github.com/BigCoke233/miracles/wiki">WIKI</a> | 问题反馈：<a href="https://github.com/BigCoke233/miracles/issues">issues</a>
+	作者博客：<a href="https://guhub.cn">Eltrac\'s</a> | 帮助文档：<a href="https://mira.guhub.cn">WIKI</a> | 问题反馈：<a href="https://github.com/BigCoke233/miracles/issues">issues</a>
 	</p>
    	  <form class="protected" action="?MiraclesBackup" method="post">
         <input type="submit" name="type" class="miracles-backup-button backup" value="备份模板数据" />&nbsp;&nbsp;

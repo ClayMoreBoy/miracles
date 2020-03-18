@@ -3,7 +3,7 @@
 <p align="center">
 <img src="https://img.shields.io/badge/build-passing-brightgreen.svg?style=flat-square"> 
 <img src="https://img.shields.io/badge/made%20with-%E2%9D%A4-ff69b4.svg?style=flat-square"> 
-<a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square"></a> 
+<a href="LICENSE"><img src="https://img.shields.io/badge/license-SATA-blue.svg?style=flat-square"></a> 
 <a href="https://typecho.org"><img src="https://img.shields.io/badge/for-Typecho-blueviolet.svg?style=flat-square"></a> 
 <a href="https://github.com/BigCoke233/miracles/releases"<img src="https://img.shields.io/badge/version-1.3.2-red.svg?style=flat-square"></a> 
 <a href="https://github.com/BigCoke233/miracles/graphs/contributors"><img src="https://img.shields.io/github/contributors/BigCoke233/miracles?color=orange&style=flat-square"></a> 
@@ -38,11 +38,12 @@
 - 后台设置备份
 
 ## 使用
-1. 下载**最新的 [Release](https://github.com/BigCoke233/miracles/releases)**
-2. 解压后，**确认目录名为`Miracles`（M 大写）**
-3. 将文件夹放入 Typecho 根目录下的`usr/themes/`
-4. 到后台-外观-可用的主题中，启用主题
-5. **根据 [wiki](http://mira.guhub.cn/)** 配置主题
+1. Star 本项目（遵循 SATA 开源协议）
+2. 下载**最新的 [Release](https://github.com/BigCoke233/miracles/releases)**
+3. 解压后，**确认目录名为`Miracles`（M 大写）**
+4. 将文件夹放入 Typecho 根目录下的`usr/themes/`
+5. 到后台-外观-可用的主题中，启用主题
+6. **根据 [wiki](http://mira.guhub.cn/)** 配置主题
 
 <details><summary>使用开发版</summary><br>
 
@@ -55,13 +56,13 @@ $ git clone https://github.com/BigCoke233/miracles.git
 </details>
 <details><summary>遇到问题</summary><br>
 
-如果在使用过程中遇到了任何问题，可以先阅读本主题的[Wiki](http://mira.guhub.cn/)，并进行一些简单的确认：清理浏览器缓存，更换网络环境，确保 Console 内没有提示访问不到文件等自身原因。  
+如果在使用过程中遇到了任何问题，可以先阅读本主题的 [Wiki](http://mira.guhub.cn/)，并进行一些简单的确认：清理浏览器缓存，更换网络环境，确保 Console 内没有提示访问不到文件等自身原因。如果你无法靠自己解决问题，可以尝试联系作者，但记住**开发者没有为你解决问题的义务，只是出于好心的帮助。**  
 在确认你遇到的现象确实是一个 Bug 后，请在 [Issues](https://github.com/BigCoke233/miracles/issues) 提交问题，并为该问题尽可能的描述清楚，按照提供的 issue 模板进行填写，谢谢配合。
 
 </details>
 <details><summary>关于版权</summary><br>
 
-主题基于 MIT 协议开源，使用或转发时**请保留版权信息**，禁止倒卖。若需二次开发后发布，请邮件通知我`hi#guhub.cn`，并保留原作者版权信息及仓库链接。同时，如果发现有侵权行为，请告知我，屡教不改者将被列入[黑名单](docs/black-list.md)，在后期可能会加入删除版权网站设置项失效的惩罚。
+主题基于 SATA 协议开源，使用前你需要给这个项目点一个 Star，使用或转发时**请保留版权信息**，禁止倒卖。若需二次开发后发布，请邮件通知我`hi#guhub.cn`，并保留原作者版权信息及仓库链接。同时，如果发现有侵权行为，请告知我，屡教不改者将被列入[黑名单](docs/black-list.md)，删除版权的用户不会在遇到问题时受到来自作者的帮助，在后期可能会加入删除版权网站设置项失效的惩罚。
 
 </details>
 
@@ -69,21 +70,23 @@ $ git clone https://github.com/BigCoke233/miracles.git
 > 这些都是在开发过程中给予我帮助的项目和大佬！
 
 ### 开源项目
-- [jQuery](https://github.com/jquery/jquery)（若干开源项目和主题内一些 js 的前置）
-- [FancyBox](https://github.com/fancyapps/fancybox)（文章图片灯箱）
-- [Highlight.js](https://github.com/highlightjs/highlight.js)（代码高亮）
-- [Hightlight-line-numbers](https://github.com/wcoder/highlightjs-line-numbers.js)（代码行号）
-- [Pjax](https://github.com/defunkt/jquery-pjax)（Pjax 预加载）
-- [Nprogress](https://github.com/rstacruz/nprogress)（Pjax 滚动条动画）
-- [OwO](https://github.com/DIYgod/OwO)（评论 OwO 表情）
-- [LazyLoad](https://github.com/tuupola/lazyload)（图片懒加载）
-- [Pangu.js](https://github.com/vinta/pangu.js)（分割中英文字符）
+- [jQuery](https://github.com/jquery/jquery) - 若干开源项目和主题内一些 js 的前置
+- [FancyBox](https://github.com/fancyapps/fancybox) - 文章图片灯箱
+- [Highlight.js](https://github.com/highlightjs/highlight.js) - 代码高亮
+- [Hightlight-line-numbers](https://github.com/wcoder/highlightjs-line-numbers.js) - 代码行号
+- [Pjax](https://github.com/defunkt/jquery-pjax) - Pjax 预加载
+- [Nprogress](https://github.com/rstacruz/nprogress) - Pjax 滚动条动画
+- [OwO](https://github.com/DIYgod/OwO) - 评论 OwO 表情
+- [LazyLoad](https://github.com/tuupola/lazyload) - 图片懒加载
+- [Pangu.js](https://github.com/vinta/pangu.js) -分割中英文字符
 
-### 大佬
-提交有价值 Pull Requests 协助开发的大佬：
-- [@outtimes](https://github.com/outtimes) 提供各种有用的功能
-- [@ohmyga233](https://github.com/ohmyga233) 实现 Ajax 评论无刷新
-- [@kengwang](https://github.com/kengwang) 提供追番页面
+### 贡献者
+| 贡献者 | 贡献内容 |
+| ------ | ------- |
+| [@BigCoke233 (Eltrac)](https://github.com/BigCoke233) | 原作者 |
+| [@outtimes](https://github.com/outtimes) | 提供各种有用的功能 |
+| [@ohmyga233](https://github.com/ohmyga233) | 实现 Ajax 评论无刷新 |
+| [@kengwang](https://github.com/kengwang) | 提供追番页面 |
 
 ## 相关
 演示站点：[我的博客](https://guhub.cn)  |  以及 Sponsor 中的站点链接  
@@ -95,4 +98,4 @@ $ git clone https://github.com/BigCoke233/miracles.git
 
 ---
 
-Copyright &copy; 2019-2020 [Eltrac](https://github.com/BigCoke233), released under MIT License
+Copyright &copy; 2019-2020 [Eltrac](https://github.com/BigCoke233), released under [SATA License](https://github.com/zTrix/sata-license).
