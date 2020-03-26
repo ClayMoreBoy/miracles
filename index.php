@@ -5,7 +5,7 @@
  * 
  * @package     Miracles
  * @author      Eltrac
- * @version     1.4.2
+ * @version     1.4.3
  * @link        https://guhub.cn
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
@@ -62,6 +62,4 @@ $this->need('includes/header.php');
 		</div>
 	  <!-- 文章循环结束 --></div>
 	</main>
-	<!-- 防止找不到 owo 容器而报错 -->
-	<div style="display:none" class="OwO"></div>
 <?php $this->need('includes/footer.php'); ?>

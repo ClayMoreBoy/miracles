@@ -84,28 +84,6 @@ if ($_GET['dbg'] == 'rawlist') {
     <main class="main-container container">
         <div class="post-body">
             <div class="post-content">
-                <?php
-                //番组链接 $bgm['link'];
-                //番组名字 $bgm['name'];
-                //番组封面 $bgm['img'];
-                //番组介绍 $bgm['des'];
-                //观看进度 $bgm['watched'] . "/" . $bgm['all']
-                //更新至   $bgm['new']['title'];
-                //观看状态 if ($bgm['basket'] == 0) echo '想看';
-                //         if ($bgm['basket'] == 1) echo '在看';
-                //         if ($bgm['basket'] == 2) echo '看完';
-                /**
-                 * 开始循环
-                 * <?php
-                 * if ($bgmdataraw['data']['total'] != 0):
-                 * foreach ($bgmlist as $bgm) : ?>
-                 * //content
-                 * <?php endforeach;
-                 * else: ?>
-                 * //if nothing
-                 * <?php endif; ?>
-                 **/
-                ?>
                 <div class="container-fluid">
                     <div class="row">
                         <?php

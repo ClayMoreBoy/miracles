@@ -38,8 +38,14 @@
 	    <button class="mobile-menu-close ready" id="toggle-mobile-menu-close"><i class="iconfont icon-x"></i></button>
 		<h2 class="mobile-menu-title">页面导航</h2>
 		<div class="mobile-menu-pagelist"><div class="container-fluid"><div class="row">
-		  <?php $this->widget('Widget_Contents_Page_List')
-          ->parse('<div class="col-6"><a href="{permalink}">{title}</a></div>'); ?>
+		  <?php 
+		  if($this->options->customNav=='') {
+			  $this->widget('Widget_Contents_Page_List')
+              ->parse('<div class="col-6"><a href="{permalink}">{title}</a></div>');
+          }
+          else {
+			  echo Contents::paresNav($this->options->customNav,"mobile");
+		  }?>
 		</div></div></div>
 		<div class="mobile-menu-footer">
 		  <p>&copy; <?php echo date('Y'); ?> <a href="<?php $this->options->SiteUrl(); ?>"><?php $this->options->title(); ?></a> | Theme <a href="https://github.com/BigCoke233/miracles">Miracles</a></p>
@@ -61,13 +67,19 @@
 	  <!-- 导航 -->
 	  <?php if($this->options->navStyle==0): ?>
 	  <!-- -大屏幕导航 -->
-      <nav class="large-screen nav nav-fixed" id="navBar"<?php if($this->options->navStyle==1): ?> style="display:none"<?php endif; ?>>
+      <nav class="large-screen nav nav-fixed" id="navBar">
 	    <div class="container">
 		  <p class="nav-content">
 		    <a href="<?php $this->options->SiteUrl(); ?>" class="nav-title"><?php $this->options->title(); ?></a>
 			<span class="nav-content-item">
-			<?php $this->widget('Widget_Contents_Page_List')
-            ->parse('<a href="{permalink}">{title}</a>'); ?>
+			<?php 
+			if($this->options->customNav=='') {
+			  $this->widget('Widget_Contents_Page_List')
+              ->parse('<a href="{permalink}">{title}</a>');
+            }
+            else {
+              echo Contents::paresNav($this->options->customNav,"top-nav");
+			}?>
 			</span>
 		  </p>
 		  <button class="nav-icon-button search-button" id="search-open-button"><i class="iconfont icon-chaxun"></i></button>
@@ -88,8 +100,14 @@
 	      </div>
 		  <div class="drawer-content">
 		    <a href="<?php $this->options->SiteUrl(); ?>" onclick="toggleDrawer()">首页</a>
-		    <?php $this->widget('Widget_Contents_Page_List')
-            ->parse('<a href="{permalink}" onclick="toggleDrawer()">{title}</a>'); ?>
+			<?php 
+			if($this->options->customNav=='') {
+			  $this->widget('Widget_Contents_Page_List')
+              ->parse('<a href="{permalink}" onclick="toggleDrawer()">{title}</a>');
+            }
+            else {
+              echo Contents::paresNav($this->options->customNav,"drawer");
+			}?>
 		  </div>
 		</div>
 		<div class="drawer-footer">
