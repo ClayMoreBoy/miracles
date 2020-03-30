@@ -1,11 +1,11 @@
 <?php
 /**
  * Born to be the Miracles. 生为奇迹
- * 作者：<a href="https://guhub.cn">Eltrac</a> | 帮助文档：<a href="https://mira.guhub.cn">GitHub Wiki</a>
+ * 作者：<a href="https://guhub.cn">Eltrac</a> | 帮助文档：<a href="https://www.notion.so/eltrac/c7c631e21b3345caa2a09bd2fb5dd4b2">GitHub Wiki</a>
  * 
  * @package     Miracles
  * @author      Eltrac
- * @version     1.4.3
+ * @version     1.5.0
  * @link        https://guhub.cn
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
@@ -27,7 +27,7 @@ $this->need('includes/header.php');
 					  echo $this->fields->banner(); 
 					else: 
 					  if($this->options->randomBanner==''){
-						echo Utils::indexTheme('images/postbg/'); echo mt_rand(1,mt_rand(1,20)); echo '.jpg';
+						echo Utils::indexTheme('images/postbg/'); srand(mb_strlen($this->title));echo rand(1,15).'.jpg';
 					  }
 					  else{
 						$banner_url = explode(',',$this->options->randomBanner);

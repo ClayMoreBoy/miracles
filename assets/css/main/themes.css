@@ -15,9 +15,18 @@
 /**
  *  Dark
  */
-.body-dark {
-	background:#4b4b4b;
-	color:#fafafa
+.body-dark,
+.body-dark .post-qr,
+.body-dark .login-form .btn {
+	background: #4b4b4b;
+	color: #fafafa
+}
+.body-dark .login-form .btn {
+	background: rgb(70,70,70)!important;
+	transition: .3s
+}
+.body-dark .login-form .btn:hover {
+	opacity: 0.8
 }
 /* Post Content */
 .body-dark .post-content code {
@@ -338,15 +347,24 @@
 /**
  * Sepia
  */
-.body-sepia {
-	background: rgb(248,241,228)
+.body-sepia,
+.body-sepia .drawer-content,
+.body-sepia .drawer-relative,
+.body-sepia .drawer-icon,
+.body-sepia .post-qr,
+.body-sepia .comment-input input,
+.body-sepia .comment-textarea {
+	background: rgb(248,241,228)!important
 }
 .body-sepia .nav {
 	background: rgba(250,241,228,0.86);
 }
 .body-sepia .post-body,
 .body-sepia .post-item,
-.body-sepia #comment-form {
+.body-sepia #comment-form,
+.body-sepia .drawer-header,
+.body-sepia .drawer-footer,
+.body-sepia .drawer-content a:hover {
 	background: rgb(245,238,218)
 }
 .body-sepia .banner-mask {
@@ -363,7 +381,8 @@
 }
 .body-sepia .search,
 .body-sepia .login,
-.body-sepia .mobile-menu {
+.body-sepia .mobile-menu,
+.body-sepia .bangumi-des {
 	background-color: rgba(248,241,228,0.98);
 }
 .body-sepia .search-form input {
@@ -393,9 +412,10 @@
 .body-sepia .post-pagenav a  {
 	background: rgb(250,246,224)!important
 }
-.body-sepia .comment-content {
+.body-sepia .comment-content,
+.body-sepia .login-form .btn {
 	background-color: rgb(250,230,220)
 }
 .body-sepia .comment-content.bubble::before {
 	border-right-color: rgb(250,230,220)
-}	
+}
