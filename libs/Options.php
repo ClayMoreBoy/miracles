@@ -42,14 +42,12 @@ function themeConfig($form) {
 	  }
     }
 	}
-    
 
     /**
 	 *  设置样式+面板
 	 */
     $ver = themeVersion();
     $themeDir = "/usr/themes/Miracles/";
-	 
 	echo '<link rel="stylesheet" href="'.$themeDir.'assets/css/setting.miracles.css"><link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300|Noto+Serif+SC:300&display=swap" rel="stylesheet">';
 	echo '<div class="miracles-pannel">
 	<h1>Miracles 主题设置面板</h1>
@@ -136,12 +134,14 @@ function themeConfig($form) {
     $form->addInput($pjax_complete);
 	
 	//improve
-	$CDN = new Typecho_Widget_Helper_Form_Element_Select('CDN',array('0'=>'关闭','1'=>'开启'),'0','<h2>优化</h2>CDN 加速加载静态资源（Beta）','开启后静态资源文件调用 JSdelivr 的 CDN 公用库，加快网页加载速度。本身有 CDN 的就不用了，不然反而可能会拖慢速度。');
+	$CDN = new Typecho_Widget_Helper_Form_Element_Select('CDN',array('0'=>'关闭','1'=>'jsDelivr','2'=>'GitHack(国内较慢)','3'=>'自定义'),'0','<h2>优化</h2>CDN 加速加载静态资源（Beta）','开启后静态资源文件通过选择的 CDN 进行调用，加快网页加载速度。如果选择自定义则需要填写下一个设置项。<br>*如果你使用开发版，请不要选择 jsDelivr 作为 CDN');
     $form->addInput($CDN);
+	$customCDN = new Typecho_Widget_Helper_Form_Element_Text('customCDN', NULL, '', _t('自定义 CDN'), _t('输入 CDN 的链接，要保证写入的路径下，目录结构和主题的 assets 目录下一致'));
+    $form->addInput($customCDN);
 	$ifShowRTA = new Typecho_Widget_Helper_Form_Element_Select('ifShowRTA',array('0'=>'不显示','1'=>'显示'),'0','阅读时长提示 RTA','在文章前加入阅读时长提示，增进用户体验');
     $form->addInput($ifShowRTA);
-	$postQR = new Typecho_Widget_Helper_Form_Element_Text('postQR', NULL, NULL, _t('自定义文章二维码 API'), _t('默认调用 topscan.com 的 API，你可以在这里输入其他的 API 地址，例如：https://api.qrserver.com/v1/create-qr-code/?size=230x230&data=<hr>'));
-    $form->addInput($postQR);
+	$pangu = new Typecho_Widget_Helper_Form_Element_Select('pangu',array('0'=>'启用','1'=>'关闭'),'0','自动分割中英文（pangu.js）','自动分割网页中的中英文，在全角字符和半角字符之间加上空格，也会修复一些标点符号的错误（.=>。），可能会有误判或是有人不喜欢，所以在这里加个按钮<hr>');
+    $form->addInput($pangu);
 	
 	//custom style
 	$grayTheme = new Typecho_Widget_Helper_Form_Element_Select('grayTheme',array('0'=>'关闭','1'=>'开启'),'0','<h2>个性化</h2>哀悼模式','打开后网站变为黑白');
@@ -156,9 +156,10 @@ function themeConfig($form) {
         'block' => "交错方块",
         'octopus' => "旋转章鱼",
         'bilibili' => "哔哩哔哩",
-        'shojo' => "少女祈祷"
+        'shojo' => "少女祈祷",
+		'custom' => "自定义"
     ];
-    $LoadingImage = new Typecho_Widget_Helper_Form_Element_Radio('loading_image', $LoadingOptions, 'block', _t('图片懒加载动画'),_t(""));
+    $LoadingImage = new Typecho_Widget_Helper_Form_Element_Radio('loading_image', $LoadingOptions, 'block', _t('图片懒加载动画'),_t("选择懒加载动画的图片，若选择自定义，则需要在 images/loading 目录下添加名为 custom.gif 的文件"));
     $form->addInput($LoadingImage);
 
     //SiteBuildTime

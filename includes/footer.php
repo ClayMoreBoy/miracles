@@ -23,10 +23,12 @@
 	<!-- JavaScript Require-->
 	<?php
 	$js_files=array("jquery","pjax.jquery","jquery.fancybox","jquery.lazyload.min","nprogress","OwO.min","highlight","highlight-line-number","pangu","qrcode.min");
-	generate_require($js_files,"js",$this->options->CDN?"https://cdn.jsdelivr.net/gh/BigCoke233/miracles@":"");
+	if($this->options->customCDN): $custom=$this->options->customCDN; else: $custom=Helper::options()->themeUrl("","Miracles"); endif;
+	generate_require($js_files,"js",$this->options->CDN,$custom);
 	?>
 	<!-- Varribles and Functions -->
 	<script>
+	var panguLoadAllow = <?php if($this->options->pangu==1):?>false<?php else:?>true<?php endif;?>;
 	var allowNavAero = <?php if($this->options->navAero==1):?>false<?php else:?>true<?php endif;?>;
 	var siteurl = '<?php $this->options->SiteUrl() ;?>';
 	var owoJson = '<?php Utils::indexTheme('assets/OwO.json'); ?>';
