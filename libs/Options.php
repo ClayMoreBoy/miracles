@@ -48,10 +48,14 @@ function themeConfig($form) {
 	 */
     $ver = themeVersion();
     $themeDir = "/usr/themes/Miracles/";
-	echo '<link rel="stylesheet" href="'.$themeDir.'assets/css/setting.miracles.css"><link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300|Noto+Serif+SC:300&display=swap" rel="stylesheet">';
+	echo '<link rel="stylesheet" href="'.$themeDir.'assets/css/setting.miracles.css">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300|Noto+Serif+SC:300&display=swap" rel="stylesheet">
+	<script>var version = "'. $ver .'";</script>
+	<script src="'.$themeDir.'assets/js/jquery.js"></script>
+	<script src="'.$themeDir.'assets/js/update.miracles.js"></script>';
 	echo '<div class="miracles-pannel">
 	<h1>Miracles 主题设置面板</h1>
-	<p>欢迎使用 Miracles 主题，目前版本是：'. $ver .'<br>
+	<p>欢迎使用 Miracles 主题，目前版本是：'. $ver .'<span id="miracles-update" class="waiting">，正在获取最新版本号......</span><br>
 	作者博客：<a href="https://guhub.cn">Eltrac\'s</a> | 
 	帮助文档：<a href="https://www.notion.so/thememiracles/c7c631e21b3345caa2a09bd2fb5dd4b2">WIKI</a> | 
 	问题反馈：<a href="https://github.com/BigCoke233/miracles/issues">issues</a></p>
@@ -130,13 +134,23 @@ function themeConfig($form) {
     $form->addInput($bannerHeight);
 
 	//pjax
-	$pjax = new Typecho_Widget_Helper_Form_Element_Select('pjax',array('0'=>'关闭','1'=>'开启'),'1','<h2>Pjax 预加载</h2>是否开启','Pjax 预加载功能的开关');
+	$pjax = new Typecho_Widget_Helper_Form_Element_Select('pjax',array(
+	  '0'=>'关闭',
+	  '1'=>'开启'
+	),'1','<h2>Pjax 预加载</h2>是否开启','Pjax 预加载功能的开关');
     $form->addInput($pjax);
 	$pjax_complete = new Typecho_Widget_Helper_Form_Element_Textarea('pjax_complete', NULL, NULL, _t('完成后执行事件'), _t('Pjax 跳转页面后执行的事件，写入 js 代码，一般将 Pjax 重载(回调)函数写在这里。<hr>'));
     $form->addInput($pjax_complete);
 	
 	//improve
-	$CDN = new Typecho_Widget_Helper_Form_Element_Select('CDN',array('0'=>'关闭','1'=>'jsDelivr','2'=>'GitHack(实时更新)','4'=>'GitHack CDN(较慢)','3'=>'自定义'),'0','<h2>优化</h2>CDN 加速加载静态资源（Beta）','开启后静态资源文件通过选择的 CDN 进行调用，加快网页加载速度。如果选择自定义则需要填写下一个设置项。<br>* 如果你使用开发版，请不要选择 jsDelivr 作为 CDN<br>* GitHack 是实时更新的，如果你不是要开发测试主题，最好不要选用');
+	$CDN = new Typecho_Widget_Helper_Form_Element_Select('CDN',array(
+	  '0'=>'关闭',
+	  '1'=>'jsDelivr',
+	  '2'=>'GitHack(实时更新)',
+	  '4'=>'GitHack CDN(较慢)',
+	  '5'=>'9jojo CDN(实时更新)',
+	  '3'=>'自定义'),'0','<h2>优化</h2>CDN 加速加载静态资源（Beta）',
+	  '开启后静态资源文件通过选择的 CDN 进行调用，加快网页加载速度。如果选择自定义则需要填写下一个设置项。<br>* 如果你使用开发版，请不要选择 jsDelivr 作为 CDN<br>* GitHack 和 9jojo 是实时更新的，如果你不是随时更新开发版，最好不要选用<br>* GitHack CDN 速度较慢，国内不建议使用，<del>就是拿来凑数的</del><br>在这里感谢<a href="https://github.com/SatoSouta/9jojo">小太</a>为 Miracles 提供 9jojo CDN');
     $form->addInput($CDN);
 	$customCDN = new Typecho_Widget_Helper_Form_Element_Text('customCDN', NULL, '', _t('自定义 CDN'), _t('输入 CDN 的链接，要保证写入的路径下，目录结构和主题的 assets 目录下一致'));
     $form->addInput($customCDN);
@@ -146,13 +160,19 @@ function themeConfig($form) {
     $form->addInput($pangu);
 	
 	//custom style
-	$grayTheme = new Typecho_Widget_Helper_Form_Element_Select('grayTheme',array('0'=>'关闭','1'=>'开启'),'0','<h2>个性化</h2>哀悼模式','打开后网站变为黑白');
+	$grayTheme = new Typecho_Widget_Helper_Form_Element_Select('grayTheme',array(
+	  '0'=>'关闭',
+	  '1'=>'开启'
+	),'0','<h2>个性化</h2>哀悼模式','打开后网站变为黑白');
     $form->addInput($grayTheme);
-	$bodyFonts = new Typecho_Widget_Helper_Form_Element_Select('bodyFonts',array('0'=>'无衬线字体','1'=>'衬线字体'),'0','网站字体','选择网站的字体，无衬线字体即“思源黑体”，衬线字体即“思源宋体”');
+	$bodyFonts = new Typecho_Widget_Helper_Form_Element_Select('bodyFonts',array(
+	  '0'=>'无衬线字体',
+	  '1'=>'衬线字体'
+	),'0','网站字体','选择网站的字体，无衬线字体即“思源黑体”，衬线字体即“思源宋体”');
     $form->addInput($bodyFonts);
 	$randomBanner = new Typecho_Widget_Helper_Form_Element_Textarea('randomBanner', NULL, NULL, _t('随机文章缩略图'), _t('文章没有独立设置头图时调用，写入图片链接，用半角逗号分割'));
     $form->addInput($randomBanner);
-        
+    
     //LoadingImage
     $LoadingOptions = [
         'block' => "交错方块",

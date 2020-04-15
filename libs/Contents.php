@@ -29,8 +29,8 @@ class Contents
 	 *  解析图片
 	 */
 	static public function parseImages($text){
-		//FancyBox
-	    $text = preg_replace('/<img(.*?)src="(.*?)"(.*?)alt="(.*?)"(.*?)>/s','<center><a data-fancybox="gallery" href="${2}" class="gallery-link"><img${1}src="${2}"${3}></a></center>',$text); 
+		//FancyBox & 图题
+	    $text = preg_replace('/<img(.*?)src="(.*?)"(.*?)alt="(.*?)"(.*?)>/s','<center><a data-fancybox="gallery" href="${2}" class="gallery-link"><img${1}src="${2}"${3}></a><span class="post-img-alt">${4}</span></center>',$text); 
 	    
 		return $text;
     }
@@ -229,7 +229,15 @@ class Contents
     static public function parseHeaderCallback($matchs)
     {
         // 增加单独标记，否则冲突
-        $id = 'toc_'.(self::$CurrentTocID++);
+        $id = $matchs[3];
+		$id = str_replace(' ','_',$id);
+		$id = str_replace('&','_',$id);
+		$id = str_replace('?','_',$id);
+		$id = str_replace("'",'_',$id);
+		$id = str_replace('"','_',$id);
+		$id = str_replace('’','_',$id);
+		$id = str_replace('“','_',$id);
+		$id = str_replace('?','_',$id);
         return '<h'.$matchs[1].$matchs[2].' id="'.$id.'">'.$matchs[3].'<a href="#'.$id.'" title="章节链接" class="post-toc-link no-line"><i class="iconfont icon-paragraph"></i></a></h'.$matchs[1].'>';
     }
 	
