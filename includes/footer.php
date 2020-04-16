@@ -26,8 +26,8 @@
 	if($this->options->customCDN): $custom=$this->options->customCDN; else: $custom=Helper::options()->themeUrl("","Miracles"); endif;
 	generate_require($js_files,"js",$this->options->CDN,$custom);
 	?>
-	<!-- Varribles and Functions -->
-	<script>
+	<!-- Options -->
+	<script>var navSlide = <?php if($this->options->navSlide==1):?>false<?php else:?>true<?php endif;?>;
 	var panguLoadAllow = <?php if($this->options->pangu==1):?>false<?php else:?>true<?php endif;?>;
 	var allowNavAero = <?php if($this->options->navAero==1):?>false<?php else:?>true<?php endif;?>;
 	var siteurl = '<?php $this->options->SiteUrl() ;?>';
@@ -51,3 +51,16 @@
 	<?php $this->footer(); ?>
   </body>
 </html>
+<!--
+
+Powered by Typecho,
+Theme Miracles by
+ _____ _ _                  
+| ____| | |_ _ __ __ _  ___ 
+|  _| | | __| '__/ _` |/ __|
+| |___| | |_| | | (_| | (__ 
+|_____|_|\__|_|  \__,_|\___|
+
+Repo: https://github.com/BigCoke233/miracles
+
+-->

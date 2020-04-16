@@ -120,8 +120,10 @@ function themeConfig($form) {
     //nav
 	$navStyle = new Typecho_Widget_Helper_Form_Element_Select('navStyle',array('0'=>'顶部导航栏','1'=>'左侧抽屉栏'),'0','<h2>导航栏 Nav</h2>类型','选择导航栏的类型（若选择左侧抽屉蓝，则下一条设置失效）');
     $form->addInput($navStyle);
-	$navAero = new Typecho_Widget_Helper_Form_Element_Select('navAero',array('0'=>'是','1'=>'否'),'1','顶部透明','视口处于最顶部时，顶部导航栏是否变为透明');
+	$navAero = new Typecho_Widget_Helper_Form_Element_Select('navAero',array('0'=>'是','1'=>'否'),'1','顶部透明','视口处于最顶部时，顶部导航栏是否变为透明（BUG 比较多，不推荐）');
     $form->addInput($navAero);
+	$navSlide = new Typecho_Widget_Helper_Form_Element_Select('navSlide',array('0'=>'是','1'=>'否'),'0','Headroom','开启后，访客向下滚动页面时导航栏收起，向上滚动时导航栏展示');
+	$form->addInput($navSlide);
 	$customNav = new Typecho_Widget_Helper_Form_Element_Textarea('customNav', NULL, NULL, _t('自定义导航栏'), _t('按照格式书写，自定义导航栏内容，留空则读取所有的独立页面，书写的格式请查看 wiki<hr>'));
     $form->addInput($customNav);
 	
@@ -146,11 +148,11 @@ function themeConfig($form) {
 	$CDN = new Typecho_Widget_Helper_Form_Element_Select('CDN',array(
 	  '0'=>'关闭',
 	  '1'=>'jsDelivr',
+	  '5'=>'9jojo CDN',
 	  '2'=>'GitHack(实时更新)',
 	  '4'=>'GitHack CDN(较慢)',
-	  '5'=>'9jojo CDN(实时更新)',
 	  '3'=>'自定义'),'0','<h2>优化</h2>CDN 加速加载静态资源（Beta）',
-	  '开启后静态资源文件通过选择的 CDN 进行调用，加快网页加载速度。如果选择自定义则需要填写下一个设置项。<br>* 如果你使用开发版，请不要选择 jsDelivr 作为 CDN<br>* GitHack 和 9jojo 是实时更新的，如果你不是随时更新开发版，最好不要选用<br>* GitHack CDN 速度较慢，国内不建议使用，<del>就是拿来凑数的</del><br>在这里感谢<a href="https://github.com/SatoSouta/9jojo">小太</a>为 Miracles 提供 9jojo CDN');
+	  '开启后静态资源文件通过选择的 CDN 进行调用，加快网页加载速度。如果选择自定义则需要填写下一个设置项。<br>* 如果你使用开发版，请不要选择 jsDelivr/9jojo 作为 CDN<br>* GitHack 是实时更新的，如果你不是随时更新开发版，最好不要选用<br>* GitHack CDN 速度较慢，国内不建议使用，<del>就是拿来凑数的</del><br>在这里感谢<a href="https://github.com/SatoSouta/9jojo">小太</a>为 Miracles 提供 9jojo CDN');
     $form->addInput($CDN);
 	$customCDN = new Typecho_Widget_Helper_Form_Element_Text('customCDN', NULL, '', _t('自定义 CDN'), _t('输入 CDN 的链接，要保证写入的路径下，目录结构和主题的 assets 目录下一致'));
     $form->addInput($customCDN);
