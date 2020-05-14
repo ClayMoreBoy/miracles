@@ -104,6 +104,10 @@ $ git clone https://github.com/BigCoke233/miracles.git
 
 - 优化：将 kbd 的短代吗语法修改为 `[[kbd]]`
 
+**v20200514A**
+
+- 优化：用 canvas 替换代码块的 mac 按钮图片
+
 </details>
 
 ## 计划
@@ -140,9 +144,11 @@ $ git clone https://github.com/BigCoke233/miracles.git
 
 ### 贡献者
 
+这里只列出贡献「相对较大」的贡献者，所有的贡献者名单请到[这里](https://github.com/BigCoke233/miracles/graphs/contributors)查看
+
 | 贡献者 | 贡献内容 |
 | ------ | ------- |
-| [@BigCoke233 (Eltrac)](https://github.com/BigCoke233) | 原作者 |
+| [@BigCoke233 (Eltrac)](https://github.com/BigCoke233) | 原作者 / 主要维护者 |
 | [@outtimes](https://github.com/outtimes) | 提供各种有用的功能 |
 | [@ohmyga233](https://github.com/ohmyga233) | 实现 Ajax 评论无刷新 |
 | [@kengwang](https://github.com/kengwang) | 提供追番页面 |
