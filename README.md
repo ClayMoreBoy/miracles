@@ -108,6 +108,10 @@ $ git clone https://github.com/BigCoke233/miracles.git
 
 - 优化：用 canvas 替换代码块的 mac 按钮图片
 
+**v20200517A**
+
+- 修复：暴力解决访问密码文章时被 pjax 强制刷新的问题
+
 </details>
 
 ## 计划
@@ -123,6 +127,8 @@ $ git clone https://github.com/BigCoke233/miracles.git
 - [ ] 新增：嵌入 GitHub 仓库 / 用户（以卡片形式展示）
 - [ ] 新增：根据 cid 嵌入本站文章（以卡片形式展示）
 - [ ] 新增：文章目录
+- [ ] 优化：密码提示（可在加密文章中自定义对密码的提示）
+- [ ] 新增：全站公告
 
 ## 鸣谢
 
