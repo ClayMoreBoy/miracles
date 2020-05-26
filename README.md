@@ -52,7 +52,7 @@
 3. 解压后，**确认目录名为`Miracles`（M 大写）**
 4. 将文件夹放入 Typecho 根目录下的`usr/themes/`
 5. 到后台-外观-可用的主题中，启用主题
-6. **根据 [wiki](https://www.notion.so/eltrac/c7c631e21b3345caa2a09bd2fb5dd4b2)** 配置主题
+6. **根据 [wiki](docs/wiki.md)** 配置主题
 
 <details><summary>使用开发版</summary><br>
 
@@ -65,7 +65,7 @@ $ git clone https://github.com/BigCoke233/miracles.git
 </details>
 <details><summary>遇到问题</summary><br>
 
-如果在使用过程中遇到了任何问题，可以先阅读本主题的 [Wiki](https://www.notion.so/eltrac/c7c631e21b3345caa2a09bd2fb5dd4b2)，并进行一些简单的确认：清理浏览器缓存，更换网络环境，确保 Console 内没有提示访问不到文件等自身原因。如果你无法靠自己解决问题，可以尝试联系作者，但记住**开发者没有为你解决问题的义务，只是出于好心的帮助。**  
+如果在使用过程中遇到了任何问题，可以先阅读本主题的 [Wiki](docs/wiki.md)，并进行一些简单的确认：清理浏览器缓存，更换网络环境，确保 Console 内没有提示访问不到文件等自身原因。如果你无法靠自己解决问题，可以尝试联系作者，但记住**开发者没有为你解决问题的义务，只是出于好心的帮助。**  
 在确认你遇到的现象确实是一个 Bug 后，请在 [Issues](https://github.com/BigCoke233/miracles/issues) 提交问题，并为该问题尽可能的描述清楚，按照提供的 issue 模板进行填写，谢谢配合。
 
 </details>
@@ -123,7 +123,7 @@ $ git clone https://github.com/BigCoke233/miracles.git
 - [ ] 优化：「说说页面」的样式
 - [ ] 优化：文章缩略图自动剪裁
 - [ ] 新增：图片横向排版「相册功能」（参考：https://blog.imalan.cn/archives/282/）
-- [ ] 优化：用 web storage 替换储存夜间/日落模式等的 cookie
+- [ ] 优化：用 localStorage 替换储存夜间/日落模式等的 cookie
 - [ ] 新增：全站加密功能
 - [ ] 新增：支持 PWA - 渐进式 Web 应用
 - [ ] 新增：添加语言包功能，通过 php 数组储存各个语言版本的文字
@@ -135,6 +135,8 @@ $ git clone https://github.com/BigCoke233/miracles.git
 - [ ] 优化：对日间模式/日落模式/夜间模式的切换通过下拉面板操作，并支持禁用主题跟随系统设置
 - [ ] 新增：导航支持下拉面板
 - [ ] 优化：页面/文章评论列表隐藏时，不显示评论数
+- [ ] 优化：优化夜间模式的切换机制
+- [ ] 新增：支持快速写入`<details>`的短代码，并使用[垫片](https://github.com/javan/details-element-polyfill)优化兼容性
 
 ## 鸣谢
 
@@ -174,7 +176,7 @@ $ git clone https://github.com/BigCoke233/miracles.git
 
 演示站点：[我的博客](https://guhub.cn)  |  以及 Sponsor 中的站点链接  
 介绍文章：[Miracles —— 生为奇迹](https://guhub.cn/p/miracles.html)  
-说明文档：[Wiki](docs/wiki.md) | [Notion(旧)](https://www.notion.so/eltrac/c7c631e21b3345caa2a09bd2fb5dd4b2)   
+说明文档：[Wiki.md](docs/wiki.md) | [Notion(被墙了)](https://www.notion.so/eltrac/c7c631e21b3345caa2a09bd2fb5dd4b2)   
 更新日志：[change-log.md](docs/change-log.md)  
 侵权网站：[black-list.md](docs/black-list.md)
 
