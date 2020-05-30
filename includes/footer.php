@@ -22,7 +22,7 @@
 	</div>
 	<!-- JavaScript Require-->
 	<?php
-	$js_files=array("jquery","pjax.jquery","jquery.fancybox","jquery.lazyload.min","nprogress","OwO.min","highlight","highlight-line-number","pangu","qrcode.min");
+	$js_files=array("jquery","pjax.jquery","gazeimg","nprogress","OwO.min","highlight","highlight-line-number","pangu","qrcode.min","details-element-polyfill");
 	if($this->options->customCDN): $custom=$this->options->customCDN; else: $custom=Helper::options()->themeUrl("","Miracles"); endif;
 	generate_require($js_files,"js",$this->options->CDN,$custom);
 	?>
@@ -32,7 +32,9 @@
 	var allowNavAero = <?php if($this->options->navAero==1):?>false<?php else:?>true<?php endif;?>;
 	var siteurl = '<?php $this->options->SiteUrl() ;?>';
 	var owoJson = '<?php Utils::indexTheme('assets/OwO.json'); ?>';
-	var faviconUrl = '<?php $this->options->favicon() ;?>';
+	var faviconUrl = '<?php if($this->options->favicon):$this->options->favicon();else:echo Utils::indexTheme('favicon.ico');endif;	?>';
+	var faviconDark = <?php $faviconDarkExist = file_exists('/faviconDark.ico');
+	if($faviconDarkExist=true): echo 'true'; else: echo 'false'; endif; ?>;
 	<?php if($this->options->pjax && $this->options->pjax!=0) :?>var loadPjax = true;
     beforePjax = function() {NProgress.start();};
 	afterPjax = function() {owoLoad();<?php $this->options->pjax_complete(); ?>};<?php endif; ?></script>

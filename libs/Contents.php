@@ -13,9 +13,9 @@ class Contents
         $text = empty($last) ? $data : $last;
         if ($widget instanceof Widget_Archive) {
 			//ParseOther
-			$text = Contents::parsePicShadow(Contents::parseNotice(Contents::parseKbd(Contents::parseCode(Contents::parseImages(Contents::parseHeadings(Contents::parseTextColor(Contents::parseRuby(Contents::parseTip($text)))))))));
+			$text = Contents::parseDetails(Contents::parsePicShadow(Contents::parseNotice(Contents::parseKbd(Contents::parseCode(Contents::parseImages(Contents::parseHeadings(Contents::parseTextColor(Contents::parseRuby(Contents::parseTip($text))))))))));
 			//LazyLoad
-	        $text = preg_replace('/<img (.*?)src(.*?)(\/)?>/','<img $1src="/usr/themes/Miracles/images/loading/'.$load_image.'.gif" data-original$2 />',$text);
+	        $text = preg_replace('/<img (.*?)src(.*?)(\/)?>/','<img $1src="/usr/themes/Miracles/images/loading/'.$load_image.'.gif" data-gisrc$2 data-gazeimg />',$text);
 			//owo
 			$text = Contents::parseEmo($text);
 			//Links
@@ -29,7 +29,7 @@ class Contents
 	 */
 	static public function parseImages($text){
 		//FancyBox & 图题
-	    $text = preg_replace('/<img(.*?)src="(.*?)"(.*?)alt="(.*?)"(.*?)>/s','<center><a data-fancybox="gallery" href="${2}" class="gallery-link"><img${1}src="${2}"${3}></a><span class="post-img-alt">${4}</span></center>',$text); 
+	    $text = preg_replace('/<img(.*?)src="(.*?)"(.*?)alt="(.*?)"(.*?)>/s','<center><img${1}src="${2}"${3}><span class="post-img-alt">${4}</span></center>',$text); 
 	    
 		return $text;
     }
@@ -97,7 +97,7 @@ class Contents
         $rp = '<div class="col-lg-2 col-6 col-md-3 links-container">
 		    <a href="${2}" title="${4}" target="_blank" class="links-link">
 			  <div class="links-item">
-			    <div class="links-img"><img src="/usr/themes/Miracles/images/loading/avatar.jpg" data-original=\'${3}\'></div>
+			    <div class="links-img"><img src="/usr/themes/Miracles/images/loading/avatar.jpg" data-gisrc=\'${3}\'></div>
 				<div class="links-title">
 				  <h4>${1}</h4>
 				</div>
@@ -138,7 +138,7 @@ class Contents
                 $linksList .= '<div class="col-lg-2 col-6 col-md-3 links-container">
 		    <a href="' . $link . '" title="' . $des . '" target="_blank" class="links-link">
 			  <div class="links-item">
-			    <div class="links-img"><img src="/usr/themes/Miracles/images/loading/avatar.jpg" data-original=\''.$avatar.'\'></div>
+			    <div class="links-img"><img src="/usr/themes/Miracles/images/loading/avatar.jpg" data-gisrc=\''.$avatar.'\'></div>
 				<div class="links-title">
 				  <h4>' . $name . '</h4>
 				</div>
@@ -172,7 +172,7 @@ class Contents
      */
     private static function parsePaopaoBiaoqingCallback($match)
     {
-        return '<img class="owo-img" src="/usr/themes/Miracles/images/loading/owo.png" data-original="/usr/themes/Miracles/images/biaoqing/paopao/'. str_replace('%', '', urlencode($match[1])) . '_2x.png">';
+        return '<img class="owo-img" src="/usr/themes/Miracles/images/loading/owo.png" data-gisrc="/usr/themes/Miracles/images/biaoqing/paopao/'. str_replace('%', '', urlencode($match[1])) . '_2x.png">';
     }
 
     /**
@@ -182,7 +182,7 @@ class Contents
      */
     private static function parseAruBiaoqingCallback($match)
     {
-        return '<img class="owo-img" src="/usr/themes/Miracles/images/loading/owo.png" data-original="/usr/themes/Miracles/images/biaoqing/aru/'. str_replace('%', '', urlencode($match[1])) . '_2x.png">';
+        return '<img class="owo-img" src="/usr/themes/Miracles/images/loading/owo.png" data-gisrc="/usr/themes/Miracles/images/biaoqing/aru/'. str_replace('%', '', urlencode($match[1])) . '_2x.png">';
     }
 
     /**
@@ -192,7 +192,7 @@ class Contents
      */
     private static function parseTweBiaoqingCallback($match)
     {
-        return '<img class="owo-img" src="/usr/themes/Miracles/images/loading/owo.png" data-original="/usr/themes/Miracles/images/biaoqing/twemoji/'. str_replace('%', '', $match[1]) . '.png">';
+        return '<img class="owo-img" src="/usr/themes/Miracles/images/loading/owo.png" data-gisrc="/usr/themes/Miracles/images/biaoqing/twemoji/'. str_replace('%', '', $match[1]) . '.png">';
     }
 	
 	/**
@@ -209,7 +209,15 @@ class Contents
     static public function parseKbd($text) {
 		$text = preg_replace('/\[\[(.*?)\]\]/s','<kbd>${1}</kbd>',$text);
 		return $text;
-	}
+    }
+    
+    /**
+	 * 解析 <details>
+	 */
+    static public function parseDetails($text) {
+        $text = preg_replace('/\[details sum="(.*?)"\](.*?)\[\/details\]/s','<details><summary>${1}</summary>${2}</details>',$text);
+        return $text;
+    }
 
 	/**
 	 *  解析章节链接
@@ -306,4 +314,27 @@ class Contents
         ), '', ' - ');
         Helper::options()->title();
     }
+
+ /**
+  * 内容归档
+  */
+  public static function archives($widget) {
+    $db = Typecho_Db::get();
+    $rows = $db->fetchAll($db->select()
+     ->from('table.contents')
+     ->order('table.contents.created', Typecho_Db::SORT_DESC)
+     ->where('table.contents.type = ?', 'post')
+     ->where('table.contents.status = ?', 'publish'));
+          
+    $stat = array();
+    foreach ($rows as $row) {
+     $row = $widget->filter($row);
+     $arr = array(
+      'title' => $row['title'],
+      'permalink' => $row['permalink']);
+  
+     $stat[date('Y', $row['created'])][$row['created']] = $arr;
+    }
+    return $stat;
+   }
 }
