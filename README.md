@@ -135,6 +135,10 @@ $ git clone https://github.com/BigCoke233/miracles.git
 
 - 修复：标签、分类页面不显示文章缩略图
 
+**v20200710A**
+
+- 优化：模板设置备份中，判断 `$_POST['type']` 存在后再进行备份处理，防止不必要的报错和其他风险
+
 </details>
 
 ## 📝 计划
@@ -205,7 +209,7 @@ $ git clone https://github.com/BigCoke233/miracles.git
 
 ## 🎁 捐助
 
-你可以通过[爱发电](https://afdian.net/@Eltrac)向我投食，~~用金钱催更~~。
+你可以通过[爱发电](https://afdian.net/@Eltrac)向我投食，~~用金钱催更~~；或是在 [Open Collective](https://opencollective.com/miracles) 上为 Miracles 进行捐献
 
 ---
 
