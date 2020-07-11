@@ -1,7 +1,9 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <?php
+require_once("themeConfig.php");
 require_once("libs/Utils.php");
 require_once("libs/Contents.php");
+require_once("libs/Comments.php");
 require_once("libs/Options.php");
 
 /**

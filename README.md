@@ -139,6 +139,14 @@ $ git clone https://github.com/BigCoke233/miracles.git
 
 - 优化：模板设置备份中，判断 `$_POST['type']` 存在后再进行备份处理，防止不必要的报错和其他风险
 
+**v20200711A**
+
+- 新增：兼容 typecho 评论反垃圾
+- 新增：高级设置
+- 新增：可选择主题字体 CDN 了
+- 新增：可以使用 TimThumb 裁剪文章缩略图了（需要在高级设置 themeConfig.php 里打开）
+- 优化：归档页面 meta 元信息
+
 </details>
 
 ## 📝 计划
