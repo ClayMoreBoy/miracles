@@ -1,10 +1,16 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
-<?php
+<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; 
+/**
+ * Miracles 核心文件
+ */
+
 require_once("themeConfig.php");
 require_once("libs/Utils.php");
 require_once("libs/Contents.php");
 require_once("libs/Comments.php");
 require_once("libs/Options.php");
+require_once("libs/Language.php");
+//引入语言文件
+require_once("libs/lang/".$GLOBALS['miraclesLang'].".php");
 
 /**
  * 注册文章解析 hook
@@ -25,7 +31,9 @@ function themeInit($archive) {
     Helper::options()->commentsMaxNestingLevels = '9999';//最大嵌套层数
     Helper::options()->commentsPageDisplay = 'first';//强制评论第一页
     Helper::options()->commentsOrder = 'DESC';//将最新的评论展示在前
-	Helper::options()->commentsCheckReferer = false;//关闭检查评论来源URL与文章链接是否一致判断(否则会无法评论)
+    Helper::options()->commentsCheckReferer = false;//关闭检查评论来源URL与文章链接是否一致判断(否则会无法评论)
+    //将设置储存到全局变量以便使用
+    $GLOBALS['miraclesOptions_randomBanner'] = Helper::options()->randomBanner;
 }
 
 /**

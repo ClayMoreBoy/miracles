@@ -1,6 +1,14 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
+/**
+ * Utils.php
+ * 辅助工具
+ * 
+ * Author:  Eltrac(BigCoke233)
+ * License: MIT
+ */
+
 class Utils
 {
 	
@@ -142,33 +150,20 @@ class Utils
     }
 
     /**
-     * 获取最早文章创建时间
-     */
-    public static function getOldestPostDate() {
-        $db = Typecho_Db::get();
-        $content = $db->fetchRow($db->select()->from('table.contents')
-            ->where('table.contents.status = ?', 'publish')
-            ->where('table.contents.password IS NULL')
-            ->order('table.contents.created', Typecho_Db::SORT_ASC)
-            ->limit(1));
-        echo '一切开始于 '.date('Y-m-d', $content['created']);
-    }
-
-    /**
      * 缩略图
      */
     public static function postBanner($post){
 		if($post->fields->banner && $post->fields->banner=!''): 
 			$banner = $post->fields->banner; 
 		else: 
-			if($post->options->randomBanner==''){
+			if($GLOBALS['miraclesOptions_randomBanner']==''){
                 $banner = '/usr/themes/Miracles/images/postbg/';
                 $banner .= srand(mb_strlen($post->title));
-                $banner .= rand(1,15).'.jpg';
+                $banner .= mt_rand(1,15).'.jpg';
 		    }
 		    else{
-		        $banner_url = explode(',',$post->options->randomBanner);
-                $banner = $banner_url[mt_rand(0,count($banner_url)-1)].'\"';
+		        $banner_url = explode(',', $GLOBALS['miraclesOptions_randomBanner']);
+                $banner = $banner_url[mt_rand(0,count($banner_url)-1)];
             }
         endif;
         //使用 TimThumb 剪裁
@@ -192,7 +187,62 @@ class Utils
             $banner_url = '/usr/themes/Miracles/libs/TimThumb.php';
             $banner = $banner_url.'?src='.$banner.$banner_size;
         }
+        //不知道为什么会有奇怪的空格，所以这里用暴力的方法去掉
+        $banner = trim($banner);
 
         echo $banner;
+    }
+
+    /**
+     * 压缩 HTML
+     * thanks https://www.jiangxu.site/concerning-how-to-typecho-integrated-html-compression.html
+     */
+    public static function compressHtml($html_source) {
+        $chunks = preg_split('/(<!--<nocompress>-->.*?<!--<\/nocompress>-->|<nocompress>.*?<\/nocompress>|<pre.*?\/pre>|<textarea.*?\/textarea>|<script.*?\/script>)/msi', $html_source, -1, PREG_SPLIT_DELIM_CAPTURE);
+        $compress = '';
+        foreach ($chunks as $c) {
+            if (strtolower(substr($c, 0, 19)) == '<!--<nocompress>-->') {
+                $c = substr($c, 19, strlen($c) - 19 - 20);
+                $compress .= $c;
+                continue;
+            } else if (strtolower(substr($c, 0, 12)) == '<nocompress>') {
+                $c = substr($c, 12, strlen($c) - 12 - 13);
+                $compress .= $c;
+                continue;
+            } else if (strtolower(substr($c, 0, 4)) == '<pre' || strtolower(substr($c, 0, 9)) == '<textarea') {
+                $compress .= $c;
+                continue;
+            } else if (strtolower(substr($c, 0, 7)) == '<script' && strpos($c, '//') != false && (strpos($c, "\r") !== false || strpos($c, "\n") !== false)) {
+                $tmps = preg_split('/(\r|\n)/ms', $c, -1, PREG_SPLIT_NO_EMPTY);
+                $c = '';
+                foreach ($tmps as $tmp) {
+                    if (strpos($tmp, '//') !== false) {
+                        if (substr(trim($tmp), 0, 2) == '//') {
+                            continue;
+                        }
+                        $chars = preg_split('//', $tmp, -1, PREG_SPLIT_NO_EMPTY);
+                        $is_quot = $is_apos = false;
+                        foreach ($chars as $key => $char) {
+                            if ($char == '"' && $chars[$key - 1] != '\\' && !$is_apos) {
+                                $is_quot = !$is_quot;
+                            } else if ($char == '\'' && $chars[$key - 1] != '\\' && !$is_quot) {
+                                $is_apos = !$is_apos;
+                            } else if ($char == '/' && $chars[$key + 1] == '/' && !$is_quot && !$is_apos) {
+                                $tmp = substr($tmp, 0, $key);
+                                break;
+                            }
+                        }
+                    }
+                    $c .= $tmp;
+                }
+            }
+            $c = preg_replace('/[\\n\\r\\t]+/', ' ', $c);
+            $c = preg_replace('/\\s{2,}/', ' ', $c);
+            $c = preg_replace('/>\\s</', '> <', $c);
+            $c = preg_replace('/\\/\\*.*?\\*\\//i', '', $c);
+            $c = preg_replace('/<!--[^!]*-->/', '', $c);
+            $compress .= $c;
+        }
+        return $compress;
     }
 }
