@@ -9,6 +9,7 @@ require_once("libs/Contents.php");
 require_once("libs/Comments.php");
 require_once("libs/Options.php");
 require_once("libs/Language.php");
+require_once('libs/TableContents.php');
 //引入语言文件
 require_once("libs/lang/".$GLOBALS['miraclesLang'].".php");
 
@@ -34,6 +35,8 @@ function themeInit($archive) {
     Helper::options()->commentsCheckReferer = false;//关闭检查评论来源URL与文章链接是否一致判断(否则会无法评论)
     //将设置储存到全局变量以便使用
     $GLOBALS['miraclesOptions_randomBanner'] = Helper::options()->randomBanner;
+    $GLOBALS['miraclesOptions_CDN'] = Helper::options()->CDN;
+    $GLOBALS['miraclesOptions_loading_image'] = Helper::options()->loading_image;
 }
 
 /**

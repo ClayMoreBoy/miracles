@@ -177,6 +177,7 @@ $ git clone https://github.com/BigCoke233/miracles.git
 - [x] 新增：添加语言包功能，通过 php 数组储存各个语言版本的文字
 - [x] 优化：文章缩略图自动剪裁
 - [x] 优化：页面/文章评论列表隐藏时，不显示评论数
+- [x] 优化：支持用 jsDelivr 加速主题内置图片的速度
 - [ ] 增加：内置站点缓存规则
 - [ ] 优化：「说说页面」的样式
 - [ ] 新增：图片横向排版「相册功能」（参考：https://blog.imalan.cn/archives/282/）
@@ -190,7 +191,6 @@ $ git clone https://github.com/BigCoke233/miracles.git
 - [ ] 优化：对日间模式/日落模式/夜间模式的切换通过下拉面板操作，并支持禁用主题跟随系统设置
 - [ ] 新增：导航支持下拉面板
 - [ ] 优化：优化夜间模式的切换机制
-- [ ] 优化：支持用 jsDelivr 加速主题内置图片的速度
 
 ## 💖 鸣谢
 
@@ -211,6 +211,7 @@ $ git clone https://github.com/BigCoke233/miracles.git
 - [details-element-polyfill](https://github.com/javan/details-element-polyfill) - 优化 details 标签兼容性
 - [hint.css](https://kushagra.dev/lab/hint/) - 工具提示 Tooltip
 - [alertify](https://github.com/MohammadYounes/AlertifyJS) - 对话框和 snackbar(notifier)
+- [TableContents](https://github.com/lutdev/table-contents) - 生成文章目录
 - ~~[LazyLoad](https://github.com/tuupola/lazyload) - 图片懒加载~~（开发版已用新的方案替换）
 - ~~[FancyBox](https://github.com/fancyapps/fancybox) - 文章图片灯箱~~（开发版已用新的方案替换）
 
@@ -240,7 +241,10 @@ $ git clone https://github.com/BigCoke233/miracles.git
 
 ## 🎁 捐助
 
-你可以通过[爱发电](https://afdian.net/@Eltrac)向我投食，~~用金钱催更~~；或是在 [Open Collective](https://opencollective.com/miracles) 上为 Miracles 进行捐献
+你可以通过[爱发电](https://afdian.net/@Eltrac)向我投食，~~用金钱催更~~；或是在 [Open Collective](https://opencollective.com/miracles) 上为 Miracles 进行捐献  
+又或者是用支付宝扫码支付，感谢投食，~~据说砸得越多更新越快~~~
+
+<img src="alipay.png" width="70%">
 
 ---
 
